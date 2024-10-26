@@ -1,8 +1,9 @@
+
 import React from "react";
 
-const RemoveFavorite = ({ movieData, handleRemove }) => {
+const Favorite = ({ movieData, handleRemove }) => {
   const handleClick = () => {
-    handleRemove(movieData.id); 
+    handleRemove(movieData.id);
   };
 
   return (
@@ -15,4 +16,4 @@ const RemoveFavorite = ({ movieData, handleRemove }) => {
   );
 };
 
-export default RemoveFavorite;
+export default Favorite;

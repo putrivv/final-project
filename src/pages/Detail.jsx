@@ -12,7 +12,6 @@ export default function Detail() {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false); 
   const API_KEY = "0c5de22b2a4d587622380e90f40977b8"; 
 
-  
   const ambilMovie = async () => {
     try {
       const response = await axios.get(
@@ -30,21 +29,18 @@ export default function Detail() {
     setFavoriteMovies(storedFavorites);
   }, [id]);
 
-  
   const isFavorite = (movieId) => favoriteMovies.includes(movieId);
 
- 
   const toggleFavorite = (movie) => {
     if (isButtonDisabled) return; 
 
     const updatedFavorites = isFavorite(movie.id)
       ? favoriteMovies.filter((favId) => favId !== movie.id) // Remove from favorites
-      : [...favoriteMovies, movie.id]; 
+      : [...favoriteMovies, movie.id]; // Add to favorites
 
     setFavoriteMovies(updatedFavorites);
     localStorage.setItem("favoriteMovies", JSON.stringify(updatedFavorites));
 
-    
     const favoriteMovieData = JSON.parse(localStorage.getItem("favoriteMoviesData")) || {};
     if (updatedFavorites.includes(movie.id)) {
       favoriteMovieData[movie.id] = movie; 
@@ -53,10 +49,8 @@ export default function Detail() {
     }
     localStorage.setItem("favoriteMoviesData", JSON.stringify(favoriteMovieData));
 
-    
     const action = isFavorite(movie.id) ? "removed from" : "added to";
     setNotification(`Movie ${action} favorites!`);
-    
     
     setIsButtonDisabled(true);
     setTimeout(() => {
@@ -65,7 +59,6 @@ export default function Detail() {
     }, 3000);
   };
 
- 
   const handleRate = (rating) => {
     const ratedMovie = {
       id: data.id,
@@ -74,33 +67,24 @@ export default function Detail() {
       poster_path: data.poster_path,
     };
 
-   
     const existingRatedMovies = JSON.parse(localStorage.getItem("ratedMovies")) || [];
-
-    
     const isRated = existingRatedMovies.find((movie) => movie.id === ratedMovie.id);
 
     if (isRated) {
-      
       const updatedMovies = existingRatedMovies.map((movie) =>
         movie.id === ratedMovie.id ? ratedMovie : movie
       );
       localStorage.setItem("ratedMovies", JSON.stringify(updatedMovies));
     } else {
-     
       existingRatedMovies.push(ratedMovie);
       localStorage.setItem("ratedMovies", JSON.stringify(existingRatedMovies));
     }
 
-    
     setNotification(`You rated "${data.title}" with ${rating} stars!`);
-
     
     setTimeout(() => {
       setNotification("");
     }, 3000);
-
-    console.log("Rated with:", rating); 
   };
 
   return (
@@ -124,13 +108,17 @@ export default function Detail() {
                   className="rounded-lg shadow-xl transition-transform duration-300 hover:scale-105"
                   alt={data.title}
                 />
-        
+                
                 <button
                   onClick={() => toggleFavorite(data)}
-                  className="absolute bottom-4 right-4 text-red-500"
+                  className="absolute bottom-4 right-4 bg-red-600 rounded-full p-3 shadow-lg transition-transform duration-200 hover:scale-110"
                   disabled={isButtonDisabled}
                 >
-                  {isFavorite(data.id) ? <FaHeart size={24} /> : <FaRegHeart size={24} />}
+                  {isFavorite(data.id) ? (
+                    <FaHeart size={32} className="text-white" />
+                  ) : (
+                    <FaRegHeart size={32} className="text-white" />
+                  )}
                 </button>
               </div>
               <div className="text-white lg:w-2/3 lg:mr-8 space-y-4">
@@ -155,12 +143,6 @@ export default function Detail() {
                     </div>
                   )}
                 </div>
-                <Link
-                  to="/"
-                  className="btn btn-default mt-4 dark:btn-dark hover:bg-blue-900 dark:hover:bg-slate-800 text-white transition-colors duration-300"
-                >
-                  Back to Home
-                </Link>
               </div>
             </>
           ) : (

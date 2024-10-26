@@ -45,14 +45,14 @@ const RatedMovies = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {ratedMovies.map((movie) => (
-              <div key={movie.id} className="bg-gray-800 rounded-lg shadow-2xl transition-transform transform hover:scale-105 overflow-hidden">
+              <div key={movie.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-2xl transition-transform transform hover:scale-105 overflow-hidden">
                 <img 
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
                   alt={movie.title} 
                   className="w-full h-64 object-cover transition duration-300 ease-in-out hover:opacity-90" 
                 />
                 <div className="p-4">
-                  <h2 className="text-xl text-white font-semibold mb-2">{movie.title}</h2>
+                  <h2 className="text-xl text-gray-800 dark:text-gray-200 font-semibold mb-2">{movie.title}</h2>
                   <div className="flex items-center mb-3">
                     {/* Render stars based on the rating */}
                     {[...Array(5)].map((_, index) => (
