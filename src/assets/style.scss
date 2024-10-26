@@ -1,0 +1,15 @@
+.container {
+    overflow: hidden;
+  }
+  
+  .movie-list {
+    display: flex;
+    gap: 16px; /* Sesuaikan jarak antar card */
+    overflow-x: auto;
+    scrollbar-width: none; /* Untuk Firefox */
+  }
+  
+  .movie-list::-webkit-scrollbar {
+    display: none; /* Untuk Chrome, Safari, dan Edge */
+  }
+  
