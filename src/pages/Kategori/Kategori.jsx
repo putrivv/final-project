@@ -23,7 +23,7 @@ const Kategori = () => {
           <Link
             key={category.id}
             to={`/kategori/${category.id}`}
-            className="bg-gray-800 rounded-lg p-4 text-white hover:bg-gray-700 transition duration-300"
+            className="bg-gray-600 dark:bg-gray-800 rounded-lg p-4 text-white hover:bg-gray-700 transition duration-300"
           >
             {category.name}
           </Link>

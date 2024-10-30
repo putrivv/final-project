@@ -25,14 +25,14 @@ export default function Detail() {
 
   useEffect(() => {
     ambilMovie();
-    const storedFavorites = JSON.parse(localStorage.getItem("favoriteMovies")) || [];
+    const storedFavorites = JSON.parse(localStorage.getItem("favoriteMovies")) || []; // Mengambil film favorit dari local storage
     setFavoriteMovies(storedFavorites);
   }, [id]);
 
   const isFavorite = (movieId) => favoriteMovies.includes(movieId);
 
   const toggleFavorite = (movie) => {
-    if (isButtonDisabled) return; 
+    if (isButtonDisabled) return; // Menghindari klik ganda pada tombol
 
     const updatedFavorites = isFavorite(movie.id)
       ? favoriteMovies.filter((favId) => favId !== movie.id) // Remove from favorites
@@ -52,7 +52,7 @@ export default function Detail() {
     const action = isFavorite(movie.id) ? "removed from" : "added to";
     setNotification(`Movie ${action} favorites!`);
     
-    setIsButtonDisabled(true);
+    setIsButtonDisabled(true);// Menonaktifkan tombol selama proses
     setTimeout(() => {
       setIsButtonDisabled(false);
       setNotification(""); 

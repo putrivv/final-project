@@ -5,6 +5,7 @@ import axios from 'axios';
 const API_KEY = '0c5de22b2a4d587622380e90f40977b8'; 
 
 const MovieSearch = () => {
+  // State untuk parameter pencarian dan daftar film
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('query') || '';
   const [movieList, setMovieList] = useState([]);
@@ -29,7 +30,8 @@ const MovieSearch = () => {
 
     fetchMovies(); 
   }, [searchQuery]);
-
+  
+// Update query pencarian saat input berubah
   const handleSearchChange = (e) => {
     const newSearch = e.target.value;
     setSearchParams({ query: newSearch }); 
@@ -91,7 +93,7 @@ const MovieSearch = () => {
       {filteredMovies.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredMovies.map((movie) => (
-            <div key={movie.id} className="card bg-gray-800 rounded-lg shadow-xl transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+            <div key={movie.id} className="card bg-gray-400 dark:bg-gray-800 rounded-lg shadow-xl transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
               <figure className="relative">
                 <img
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -103,8 +105,8 @@ const MovieSearch = () => {
                 </div>
               </figure>
               <div className="card-body p-6">
-                <h2 className="text-xl text-white font-bold mb-2">{movie.title}</h2>
-                <p className="text-gray-400 text-sm mb-4">
+                <h2 className="text-xl text-black dark:text-white font-bold mb-2">{movie.title}</h2>
+                <p className="text-gray-800 dark:text-gray-400 text-sm mb-4">
                   {movie.overview.length > 100 ? `${movie.overview.slice(0, 100)}...` : movie.overview}
                 </p>
                 <div className="flex justify-between items-center">

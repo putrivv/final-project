@@ -6,7 +6,7 @@ const StarRating = ({ onRate }) => {
   const handleStarClick = (index) => {
     const newRating = index + 1; 
     setCurrentRating(newRating); 
-    onRate(newRating); 
+    onRate(newRating); // Memanggil fungsi onRate dengan rating baru
   };
 
   return (

@@ -4,6 +4,7 @@ import ThemeContext from "./context/ThemeContext";
 import { useDispatch, useSelector } from "react-redux";
 
 const Navbar = () => {
+   // Mengakses konteks tema dan state Redux
   const [getTheme, setTheme] = useContext(ThemeContext);
   const root = window.document.documentElement;
   const theme = useSelector((state) => state.theme.theme);
@@ -29,7 +30,7 @@ const Navbar = () => {
     }
   };
 
-  const isSearchPage = location.pathname === "/search";
+  const isSearchPage = location.pathname === "/search"; // Memeriksa apakah halaman saat ini adalah halaman pencarian
 
   return (
     <div>

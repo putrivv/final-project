@@ -1,7 +1,7 @@
 import { TOOGLE_THEME } from "../action/ThemeAction";
 
 const nilaiDefault = {
-    theme: "light",
+    theme: "dark",
 };
 
 const themeReducer = (state= nilaiDefault, action) =>{
@@ -9,7 +9,7 @@ const themeReducer = (state= nilaiDefault, action) =>{
         case TOOGLE_THEME:
             return {
                 ...state,
-                theme : state.theme === "light" ? "dark" : "light",
+                theme : state.theme === "dark" ? "light" : "dark",
             };
             default:
                 return state;

@@ -10,6 +10,7 @@ const CategoryMovies = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    // Fungsi untuk mengambil film berdasarkan kategori
     const fetchMoviesByCategory = async () => {
       setLoading(true);
       try {
@@ -38,7 +39,7 @@ const CategoryMovies = () => {
           {movies.map((movie) => (
             <div 
               key={movie.id} 
-              className="bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105"
+              className="bg-gray-400 dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105"
             >
               <img 
                 src={movie.poster_path ? 
@@ -48,8 +49,8 @@ const CategoryMovies = () => {
                 className="w-full h-80 object-cover"
               />
               <div className="p-4">
-                <h2 className="text-lg text-white font-semibold mb-2">{movie.title}</h2>
-                <p className="text-gray-400 text-sm mb-4">
+                <h2 className="text-lg text-black dark:text-white font-semibold mb-2">{movie.title}</h2>
+                <p className="text-gray-800 dark:text-gray-400 text-sm mb-4">
                   {movie.overview.length > 100 ? `${movie.overview.slice(0, 100)}...` : movie.overview}
                 </p>
                 <Link to={`/detail/${movie.id}`}>

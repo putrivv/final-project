@@ -1,6 +1,9 @@
 
 import React from "react";
 
+// Komponen Favorite ini digunakan untuk menampilkan tombol
+// yang memungkinkan pengguna menghapus film dari daftar favorit
+
 const Favorite = ({ movieData, handleRemove }) => {
   const handleClick = () => {
     handleRemove(movieData.id);
